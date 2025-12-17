@@ -1,10 +1,49 @@
 import { useState } from 'react';
-import { Code, Layers, FileText, Lightbulb, Star } from 'lucide-react';
+import { Layers, FileText, Globe, ChevronDown } from 'lucide-react';
+import { LanguageProvider, useLanguage, languages } from './contexts/LanguageContext';
 import PromptBody from './components/PromptBody';
 import Templates from './components/Templates';
 
-function App() {
+function LanguageSwitcher() {
+    const { currentLang, setCurrentLang } = useLanguage();
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div className="lang-switcher">
+            <button
+                className="lang-switcher__btn"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <Globe size={18} />
+                <span>{languages[currentLang].flag}</span>
+                <span className="lang-switcher__name">{languages[currentLang].name}</span>
+                <ChevronDown size={16} className={isOpen ? 'rotate' : ''} />
+            </button>
+
+            {isOpen && (
+                <div className="lang-switcher__dropdown">
+                    {Object.values(languages).map(lang => (
+                        <button
+                            key={lang.code}
+                            className={`lang-switcher__option ${currentLang === lang.code ? 'active' : ''}`}
+                            onClick={() => {
+                                setCurrentLang(lang.code);
+                                setIsOpen(false);
+                            }}
+                        >
+                            <span>{lang.flag}</span>
+                            <span>{lang.name}</span>
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+
+function AppContent() {
     const [activeSection, setActiveSection] = useState('prompt-body');
+    const { t } = useLanguage();
 
     return (
         <div className="app">
@@ -15,7 +54,11 @@ function App() {
                     </div>
                     <div>
                         <h1 className="header__title">Prompt Master</h1>
-                        <p className="header__subtitle">Architecture Visualizer & Templates</p>
+                        <p className="header__subtitle">{t({
+                            vi: 'Trực quan hóa cấu trúc & Templates',
+                            en: 'Architecture Visualizer & Templates',
+                            ja: 'アーキテクチャビジュアライザー & テンプレート'
+                        })}</p>
                     </div>
                 </div>
 
@@ -35,6 +78,8 @@ function App() {
                         <span>Templates</span>
                     </button>
                 </nav>
+
+                <LanguageSwitcher />
             </header>
 
             <main className="main">
@@ -42,6 +87,14 @@ function App() {
                 {activeSection === 'templates' && <Templates />}
             </main>
         </div>
+    );
+}
+
+function App() {
+    return (
+        <LanguageProvider>
+            <AppContent />
+        </LanguageProvider>
     );
 }
 

@@ -2,8 +2,16 @@ export const templates = {
     developer: [
         {
             id: 'dev-1',
-            title: 'Debug Error Analysis',
-            description: 'Phân tích và fix errors với context đầy đủ',
+            title: {
+                vi: 'Debug Error Analysis',
+                en: 'Debug Error Analysis',
+                ja: 'デバッグエラー分析'
+            },
+            description: {
+                vi: 'Phân tích và fix errors với context đầy đủ',
+                en: 'Analyze and fix errors with full context',
+                ja: 'フルコンテキストでエラーを分析・修正'
+            },
             popular: true,
             template: `CONTEXT:
 Language: [language]
@@ -17,7 +25,7 @@ ERROR MESSAGE:
 
 RELEVANT CODE:
 \`\`\`[language]
-[Paste code gây lỗi]
+[Paste code causing error]
 \`\`\`
 
 WHAT I'VE TRIED:
@@ -26,19 +34,27 @@ WHAT I'VE TRIED:
 
 TASK:
 1. Analyze root cause
-2. Explain tại sao error xảy ra
-3. Suggest fix(es) với code example
-4. Recommend cách prevent tương lai`
+2. Explain why this error occurs
+3. Suggest fix(es) with code example
+4. Recommend prevention for the future`
         },
         {
             id: 'dev-2',
-            title: 'Code Explanation',
-            description: 'Hiểu code từ codebase mới hoặc legacy',
+            title: {
+                vi: 'Code Explanation',
+                en: 'Code Explanation',
+                ja: 'コード説明'
+            },
+            description: {
+                vi: 'Hiểu code từ codebase mới hoặc legacy',
+                en: 'Understand code from new or legacy codebase',
+                ja: '新規またはレガシーコードベースのコードを理解'
+            },
             popular: true,
             template: `CONTEXT:
 Language: [language]
-Framework: [framework nếu có]
-Purpose: Tôi cần hiểu đoạn code này
+Framework: [framework if applicable]
+Purpose: I need to understand this code
 
 CODE:
 \`\`\`[language]
@@ -46,16 +62,24 @@ CODE:
 \`\`\`
 
 TASK:
-1. Giải thích high-level đoạn code này làm gì
-2. Walk through từng phần quan trọng
-3. Explain logic và flow
-4. Point out patterns được sử dụng
-5. Highlight potential issues (nếu có)`
+1. Explain high-level what this code does
+2. Walk through each important part
+3. Explain logic and flow
+4. Point out patterns used
+5. Highlight potential issues (if any)`
         },
         {
             id: 'dev-3',
-            title: 'Unit Test Generation',
-            description: 'Generate unit tests với coverage đầy đủ',
+            title: {
+                vi: 'Unit Test Generation',
+                en: 'Unit Test Generation',
+                ja: 'ユニットテスト生成'
+            },
+            description: {
+                vi: 'Generate unit tests với coverage đầy đủ',
+                en: 'Generate unit tests with full coverage',
+                ja: 'フルカバレッジでユニットテストを生成'
+            },
             popular: true,
             template: `CONTEXT:
 Language: [language]
@@ -64,7 +88,7 @@ Code to test: [function/class/module]
 
 CODE:
 \`\`\`[language]
-[Paste code cần test]
+[Paste code to test]
 \`\`\`
 
 TASK:
@@ -72,7 +96,7 @@ Generate unit tests covering:
 1. Happy path cases
 2. Edge cases (null, empty, boundary values)
 3. Error cases
-4. Mock setup (nếu có dependencies)
+4. Mock setup (if there are dependencies)
 
 REQUIREMENTS:
 - Follow [AAA/Given-When-Then] pattern
@@ -81,37 +105,53 @@ REQUIREMENTS:
         },
         {
             id: 'dev-4',
-            title: 'Code Refactoring',
-            description: 'Cải thiện code quality và maintainability',
+            title: {
+                vi: 'Code Refactoring',
+                en: 'Code Refactoring',
+                ja: 'コードリファクタリング'
+            },
+            description: {
+                vi: 'Cải thiện code quality và maintainability',
+                en: 'Improve code quality and maintainability',
+                ja: 'コード品質と保守性を改善'
+            },
             template: `CONTEXT:
 Language: [language]
 Current issues: [code smells/performance/readability]
-Constraints: [không đổi public API/backward compatible/etc]
+Constraints: [don't change public API/backward compatible/etc]
 
 CODE:
 \`\`\`[language]
-[Paste code cần refactor]
+[Paste code to refactor]
 \`\`\`
 
 TASK:
-1. Identify các issues trong code
-2. Suggest refactoring với explanations
+1. Identify issues in the code
+2. Suggest refactoring with explanations
 3. Provide refactored code
-4. Explain benefits của changes
+4. Explain benefits of changes
 5. Note any breaking changes
 
 ⚠️ IMPORTANT:
 - Preserve existing functionality
-- Explain mỗi change
-- Tôi sẽ review kỹ trước khi apply`
+- Explain each change
+- I will review carefully before applying`
         },
         {
             id: 'dev-5',
-            title: 'API Design',
-            description: 'Thiết kế REST API endpoints',
+            title: {
+                vi: 'API Design',
+                en: 'API Design',
+                ja: 'API設計'
+            },
+            description: {
+                vi: 'Thiết kế REST API endpoints',
+                en: 'Design REST API endpoints',
+                ja: 'REST APIエンドポイント設計'
+            },
             template: `CONTEXT:
 Service: [service name]
-Purpose: [mô tả purpose]
+Purpose: [describe purpose]
 Consumers: [internal/external/both]
 Authentication: [method]
 
@@ -119,11 +159,11 @@ REQUIREMENTS:
 [Describe API requirements]
 
 TASK:
-Design REST API với:
+Design REST API with:
 1. Endpoints (method + path)
 2. Request/Response schemas
 3. Error responses
-4. Pagination strategy (nếu cần)
+4. Pagination strategy (if needed)
 5. Versioning approach
 
 OUTPUT FORMAT:
@@ -132,8 +172,16 @@ OUTPUT FORMAT:
         },
         {
             id: 'dev-6',
-            title: 'Database Query Optimization',
-            description: 'Tối ưu queries chậm',
+            title: {
+                vi: 'Database Query Optimization',
+                en: 'Database Query Optimization',
+                ja: 'データベースクエリ最適化'
+            },
+            description: {
+                vi: 'Tối ưu queries chậm',
+                en: 'Optimize slow queries',
+                ja: '遅いクエリを最適化'
+            },
             template: `CONTEXT:
 Database: [MySQL/PostgreSQL/MongoDB/etc]
 Table/Collection: [name]
@@ -146,7 +194,7 @@ CURRENT QUERY:
 
 TABLE STRUCTURE:
 \`\`\`sql
-[Paste schema hoặc describe]
+[Paste schema or describe]
 \`\`\`
 
 INDEXES:
@@ -163,70 +211,94 @@ TASK:
     ba: [
         {
             id: 'ba-1',
-            title: 'Requirements Analysis',
-            description: 'Phân tích và làm rõ requirements',
+            title: {
+                vi: 'Requirements Analysis',
+                en: 'Requirements Analysis',
+                ja: '要件分析'
+            },
+            description: {
+                vi: 'Phân tích và làm rõ requirements',
+                en: 'Analyze and clarify requirements',
+                ja: '要件を分析・明確化'
+            },
             popular: true,
             template: `CONTEXT:
-Tôi là BA đang phân tích requirements cho [feature/project].
+I am a BA analyzing requirements for [feature/project].
 Domain: [domain]
 Stakeholders: [list]
 
 RAW REQUIREMENTS:
-[Paste requirements từ stakeholder]
+[Paste requirements from stakeholder]
 
 TASK:
-1. Tóm tắt requirements chính
-2. Identify gaps và ambiguities
-3. List câu hỏi clarification cần hỏi stakeholder
+1. Summarize main requirements
+2. Identify gaps and ambiguities
+3. List clarification questions for stakeholder
 4. Suggest user stories format
 
 FORMAT:
-- Summary: bullet points ngắn gọn
-- Gaps: numbered list với explanation
+- Summary: short bullet points
+- Gaps: numbered list with explanation
 - Questions: grouped by topic
 - User Stories: As a [user], I want [action], so that [benefit]`
         },
         {
             id: 'ba-2',
-            title: 'User Story Writing',
-            description: 'Viết user stories với acceptance criteria',
+            title: {
+                vi: 'User Story Writing',
+                en: 'User Story Writing',
+                ja: 'ユーザーストーリー作成'
+            },
+            description: {
+                vi: 'Viết user stories với acceptance criteria',
+                en: 'Write user stories with acceptance criteria',
+                ja: '受け入れ基準付きユーザーストーリーを作成'
+            },
             popular: true,
             template: `CONTEXT:
-Feature: [tên feature]
-Epic: [epic name nếu có]
+Feature: [feature name]
+Epic: [epic name if applicable]
 User type: [end user/admin/system]
 
 REQUIREMENTS:
-[Mô tả requirements]
+[Describe requirements]
 
 TASK:
-Viết user stories với:
-1. Title ngắn gọn
+Write user stories with:
+1. Short title
 2. Description: As a [user], I want [action], so that [benefit]
 3. Acceptance Criteria (Given-When-Then)
 4. Edge cases
 5. Dependencies
 
 CONSTRAINTS:
-- Mỗi story nên completable trong 1-3 days
-- Independent và testable
-- Không include technical implementation`
+- Each story should be completable in 1-3 days
+- Independent and testable
+- Don't include technical implementation`
         },
         {
             id: 'ba-3',
-            title: 'Gap Analysis',
-            description: 'So sánh current state và desired state',
+            title: {
+                vi: 'Gap Analysis',
+                en: 'Gap Analysis',
+                ja: 'ギャップ分析'
+            },
+            description: {
+                vi: 'So sánh current state và desired state',
+                en: 'Compare current state and desired state',
+                ja: '現状とあるべき姿を比較'
+            },
             template: `CONTEXT:
-Current state: [mô tả hiện tại]
-Desired state: [mô tả mong muốn]
+Current state: [describe current]
+Desired state: [describe desired]
 Domain: [domain]
 
 TASK:
 Perform gap analysis:
-1. List differences giữa current và desired
+1. List differences between current and desired
 2. Categorize gaps: Process/Technology/People/Data
-3. Assess impact của mỗi gap: High/Medium/Low
-4. Suggest actions để close each gap
+3. Assess impact of each gap: High/Medium/Low
+4. Suggest actions to close each gap
 5. Prioritize actions
 
 OUTPUT:
@@ -234,10 +306,18 @@ OUTPUT:
         },
         {
             id: 'ba-4',
-            title: 'Use Case Documentation',
-            description: 'Document use cases chi tiết',
+            title: {
+                vi: 'Use Case Documentation',
+                en: 'Use Case Documentation',
+                ja: 'ユースケースドキュメント'
+            },
+            description: {
+                vi: 'Document use cases chi tiết',
+                en: 'Document detailed use cases',
+                ja: '詳細なユースケースをドキュメント化'
+            },
             template: `CONTEXT:
-Use case name: [tên]
+Use case name: [name]
 System: [system name]
 Primary actor: [actor]
 
@@ -245,7 +325,7 @@ DESCRIPTION:
 [Brief description]
 
 TASK:
-Document use case với:
+Document use case with:
 1. Use Case ID & Name
 2. Primary Actor
 3. Stakeholders & Interests
@@ -262,36 +342,52 @@ FORMAT: Structured document`
     pmpo: [
         {
             id: 'pm-1',
-            title: 'Product Research & Comparison',
-            description: 'So sánh solutions và đưa ra recommendations',
+            title: {
+                vi: 'Product Research & Comparison',
+                en: 'Product Research & Comparison',
+                ja: '製品調査・比較'
+            },
+            description: {
+                vi: 'So sánh solutions và đưa ra recommendations',
+                en: 'Compare solutions and provide recommendations',
+                ja: 'ソリューションを比較・推奨を提供'
+            },
             popular: true,
             template: `CONTEXT:
-Tôi là Product Manager đang nghiên cứu [tên sản phẩm/tính năng].
-Thị trường mục tiêu: [mô tả thị trường]
+I am a Product Manager researching [product/feature name].
+Target market: [describe market]
 Constraints: [budget/timeline/resources]
 
 TASK:
-1. So sánh các giải pháp tương tự trên thị trường
-2. Phân tích pros/cons của mỗi giải pháp
-3. Recommend giải pháp phù hợp nhất
+1. Compare similar solutions in the market
+2. Analyze pros/cons of each solution
+3. Recommend the most suitable solution
 
 FORMAT:
-- Bảng so sánh
-- Pros/Cons cho mỗi option
-- Recommendation với reasoning`
+- Comparison table
+- Pros/Cons for each option
+- Recommendation with reasoning`
         },
         {
             id: 'pm-2',
-            title: 'PRD Draft',
-            description: 'Draft Product Requirements Document',
+            title: {
+                vi: 'PRD Draft',
+                en: 'PRD Draft',
+                ja: 'PRDドラフト'
+            },
+            description: {
+                vi: 'Draft Product Requirements Document',
+                en: 'Draft Product Requirements Document',
+                ja: '製品要件ドキュメントのドラフト'
+            },
             template: `CONTEXT:
-Tôi cần viết PRD cho tính năng [tên tính năng].
-Product: [tên sản phẩm]
-Target users: [mô tả users]
-Business goal: [mục tiêu]
+I need to write a PRD for [feature name].
+Product: [product name]
+Target users: [describe users]
+Business goal: [goal]
 
 TASK:
-Giúp tôi draft PRD bao gồm:
+Help me draft PRD including:
 1. Problem Statement
 2. Proposed Solution
 3. User Stories
@@ -300,40 +396,56 @@ Giúp tôi draft PRD bao gồm:
 6. Open Questions
 
 CONSTRAINTS:
-- Ngắn gọn, súc tích
-- Focus vào "What" và "Why", không phải "How"
-- Tránh technical implementation details`
+- Concise and clear
+- Focus on "What" and "Why", not "How"
+- Avoid technical implementation details`
         },
         {
             id: 'pm-3',
-            title: 'Feature Prioritization',
-            description: 'Prioritize features với framework',
+            title: {
+                vi: 'Feature Prioritization',
+                en: 'Feature Prioritization',
+                ja: '機能優先順位付け'
+            },
+            description: {
+                vi: 'Prioritize features với framework',
+                en: 'Prioritize features with framework',
+                ja: 'フレームワークで機能を優先順位付け'
+            },
             template: `CONTEXT:
-Tôi có danh sách features cần prioritize cho [quarter/sprint].
+I have a list of features to prioritize for [quarter/sprint].
 Team capacity: [X story points/sprints]
 Business priorities: [list priorities]
 
 FEATURES LIST:
-[Paste danh sách features]
+[Paste feature list]
 
 TASK:
-Giúp tôi prioritize bằng:
+Help me prioritize using:
 1. Apply framework [RICE/MoSCoW/Value vs Effort]
-2. Explain reasoning cho top priorities
+2. Explain reasoning for top priorities
 3. Identify dependencies
 4. Suggest grouping/sequencing
 
 OUTPUT:
-- Bảng prioritization
-- Reasoning cho top 5
+- Prioritization table
+- Reasoning for top 5
 - Recommendations`
         }
     ],
     qa: [
         {
             id: 'qa-1',
-            title: 'Test Cases from Requirements',
-            description: 'Generate test cases từ requirements',
+            title: {
+                vi: 'Test Cases from Requirements',
+                en: 'Test Cases from Requirements',
+                ja: '要件からテストケース作成'
+            },
+            description: {
+                vi: 'Generate test cases từ requirements',
+                en: 'Generate test cases from requirements',
+                ja: '要件からテストケースを生成'
+            },
             popular: true,
             template: `CONTEXT:
 Feature: [feature name]
@@ -344,10 +456,10 @@ REQUIREMENTS:
 [Paste requirements/user story]
 
 ACCEPTANCE CRITERIA:
-[Paste ACs nếu có]
+[Paste ACs if available]
 
 TASK:
-Generate test cases với:
+Generate test cases with:
 1. Test Case ID
 2. Title
 3. Preconditions
@@ -364,8 +476,16 @@ COVERAGE:
         },
         {
             id: 'qa-2',
-            title: 'Playwright Automation Script',
-            description: 'Generate Playwright test scripts',
+            title: {
+                vi: 'Playwright Automation Script',
+                en: 'Playwright Automation Script',
+                ja: 'Playwright自動化スクリプト'
+            },
+            description: {
+                vi: 'Generate Playwright test scripts',
+                en: 'Generate Playwright test scripts',
+                ja: 'Playwrightテストスクリプトを生成'
+            },
             template: `CONTEXT:
 Framework: Playwright
 Language: [TypeScript/JavaScript]
@@ -375,10 +495,10 @@ TEST SCENARIO:
 [Describe what to test]
 
 PAGE STRUCTURE:
-[Paste relevant HTML hoặc describe elements]
+[Paste relevant HTML or describe elements]
 
 TASK:
-Generate Playwright test script với:
+Generate Playwright test script with:
 1. Page Object (if needed)
 2. Test setup/teardown
 3. Test steps
@@ -393,8 +513,16 @@ BEST PRACTICES:
         },
         {
             id: 'qa-3',
-            title: 'API Test Cases',
-            description: 'Generate API test scenarios',
+            title: {
+                vi: 'API Test Cases',
+                en: 'API Test Cases',
+                ja: 'APIテストケース'
+            },
+            description: {
+                vi: 'Generate API test scenarios',
+                en: 'Generate API test scenarios',
+                ja: 'APIテストシナリオを生成'
+            },
             template: `CONTEXT:
 API: [endpoint]
 Method: [GET/POST/PUT/DELETE]
@@ -421,8 +549,16 @@ FORMAT:
     techlead: [
         {
             id: 'tl-1',
-            title: 'Architecture Review',
-            description: 'Review và đánh giá architecture',
+            title: {
+                vi: 'Architecture Review',
+                en: 'Architecture Review',
+                ja: 'アーキテクチャレビュー'
+            },
+            description: {
+                vi: 'Review và đánh giá architecture',
+                en: 'Review and evaluate architecture',
+                ja: 'アーキテクチャをレビュー・評価'
+            },
             popular: true,
             template: `CONTEXT:
 System: [system name]
@@ -438,18 +574,26 @@ REQUIREMENTS:
 - Availability: [uptime requirements]
 
 TASK:
-Review architecture và provide:
-1. Strengths của current approach
+Review architecture and provide:
+1. Strengths of current approach
 2. Potential issues/risks
 3. Scalability concerns
 4. Security considerations
 5. Alternative approaches
-6. Recommendations với tradeoffs`
+6. Recommendations with tradeoffs`
         },
         {
             id: 'tl-2',
-            title: 'Technical Decision (ADR)',
-            description: 'Document architectural decisions',
+            title: {
+                vi: 'Technical Decision (ADR)',
+                en: 'Technical Decision (ADR)',
+                ja: '技術的決定 (ADR)'
+            },
+            description: {
+                vi: 'Document architectural decisions',
+                en: 'Document architectural decisions',
+                ja: 'アーキテクチャ決定を文書化'
+            },
             template: `CONTEXT:
 Decision: [what needs to be decided]
 Stakeholders: [who's affected]
@@ -464,7 +608,7 @@ OPTIONS:
 3. [Option 3]
 
 TASK:
-Help me document ADR (Architecture Decision Record) với:
+Help me document ADR (Architecture Decision Record) with:
 1. Title
 2. Status
 3. Context
@@ -475,8 +619,16 @@ Help me document ADR (Architecture Decision Record) với:
         },
         {
             id: 'tl-3',
-            title: 'Incident Post-mortem',
-            description: 'Structure post-mortem document',
+            title: {
+                vi: 'Incident Post-mortem',
+                en: 'Incident Post-mortem',
+                ja: 'インシデント事後分析'
+            },
+            description: {
+                vi: 'Structure post-mortem document',
+                en: 'Structure post-mortem document',
+                ja: '事後分析ドキュメントの構成'
+            },
             template: `CONTEXT:
 Incident: [brief description]
 Date/Time: [when]
@@ -506,19 +658,27 @@ TONE: Blameless, focused on learning`
 export const bestPractices = [
     {
         title: 'Context + Task + Format',
-        description: 'Pattern cơ bản cho hầu hết các tasks',
+        description: {
+            vi: 'Pattern cơ bản cho hầu hết các tasks',
+            en: 'Basic pattern for most tasks',
+            ja: 'ほとんどのタスクに使える基本パターン'
+        },
         example: `CONTEXT:
-[Mô tả situation, background, constraints]
+[Describe situation, background, constraints]
 
 TASK:
-[Mô tả cụ thể cần làm gì]
+[Describe specifically what to do]
 
 FORMAT:
-[Specify output format mong muốn]`
+[Specify desired output format]`
     },
     {
         title: 'Role + Goal + Constraints',
-        description: 'Khi cần expertise cụ thể',
+        description: {
+            vi: 'Khi cần expertise cụ thể',
+            en: 'When specific expertise is needed',
+            ja: '特定の専門知識が必要な場合'
+        },
         example: `ROLE:
 Act as [specific role] with expertise in [domain].
 
@@ -531,7 +691,11 @@ CONSTRAINTS:
     },
     {
         title: 'Step-by-step',
-        description: 'Cho complex problems và debugging',
+        description: {
+            vi: 'Cho complex problems và debugging',
+            en: 'For complex problems and debugging',
+            ja: '複雑な問題とデバッグ向け'
+        },
         example: `CONTEXT:
 [Background]
 
@@ -548,7 +712,11 @@ Show your reasoning at each step.`
     },
     {
         title: 'Few-shot (Examples)',
-        description: 'Khi cần specific format/style',
+        description: {
+            vi: 'Khi cần specific format/style',
+            en: 'When specific format/style is needed',
+            ja: '特定のフォーマット/スタイルが必要な場合'
+        },
         example: `TASK: [Describe task]
 
 EXAMPLES:
@@ -566,17 +734,44 @@ Output:`
 
 export const dosAndDonts = {
     dos: [
-        { title: 'Cung cấp Context đầy đủ', desc: 'Background, constraints, code, errors' },
-        { title: 'Chia nhỏ tasks', desc: 'Thay vì "build website", hãy "create ProductCard component"' },
-        { title: 'Specify output format', desc: 'Nói rõ muốn nhận output như thế nào' },
-        { title: 'Iterate và refine', desc: 'Feedback → Adjust → Improve' },
-        { title: 'Review trước khi dùng', desc: 'Hiểu code trước khi commit' }
+        {
+            title: { vi: 'Cung cấp Context đầy đủ', en: 'Provide full context', ja: '完全なコンテキストを提供' },
+            desc: { vi: 'Background, constraints, code, errors', en: 'Background, constraints, code, errors', ja: '背景、制約、コード、エラー' }
+        },
+        {
+            title: { vi: 'Chia nhỏ tasks', en: 'Break down tasks', ja: 'タスクを分割' },
+            desc: { vi: 'Thay vì "build website", hãy "create ProductCard component"', en: 'Instead of "build website", use "create ProductCard component"', ja: '「ウェブサイト構築」ではなく「ProductCardコンポーネント作成」' }
+        },
+        {
+            title: { vi: 'Specify output format', en: 'Specify output format', ja: '出力形式を指定' },
+            desc: { vi: 'Nói rõ muốn nhận output như thế nào', en: 'Clearly state how you want the output', ja: '出力の形式を明確に述べる' }
+        },
+        {
+            title: { vi: 'Iterate và refine', en: 'Iterate and refine', ja: '反復と改善' },
+            desc: { vi: 'Feedback → Adjust → Improve', en: 'Feedback → Adjust → Improve', ja: 'フィードバック → 調整 → 改善' }
+        },
+        {
+            title: { vi: 'Review trước khi dùng', en: 'Review before using', ja: '使用前にレビュー' },
+            desc: { vi: 'Hiểu code trước khi commit', en: 'Understand code before committing', ja: 'コミット前にコードを理解' }
+        }
     ],
     donts: [
-        { title: 'Blind copy/paste', desc: '25% suggestions có lỗi logic' },
-        { title: 'Over-reliance', desc: 'Không để mất kỹ năng cốt lõi' },
-        { title: 'Vague prompts', desc: '"Fix this" → AI đoán mò' },
-        { title: 'Skip testing', desc: '"Looks good" ≠ works correctly' }
+        {
+            title: { vi: 'Blind copy/paste', en: 'Blind copy/paste', ja: '盲目的なコピペ' },
+            desc: { vi: '25% suggestions có lỗi logic', en: '25% of suggestions have logic errors', ja: '提案の25%にロジックエラーあり' }
+        },
+        {
+            title: { vi: 'Over-reliance', en: 'Over-reliance', ja: '過度の依存' },
+            desc: { vi: 'Không để mất kỹ năng cốt lõi', en: 'Don\'t lose core skills', ja: 'コアスキルを失わないように' }
+        },
+        {
+            title: { vi: 'Vague prompts', en: 'Vague prompts', ja: '曖昧なプロンプト' },
+            desc: { vi: '"Fix this" → AI đoán mò', en: '"Fix this" → AI guesses', ja: '「これを直して」→ AIは推測' }
+        },
+        {
+            title: { vi: 'Skip testing', en: 'Skip testing', ja: 'テストを省略' },
+            desc: { vi: '"Looks good" ≠ works correctly', en: '"Looks good" ≠ works correctly', ja: '「良さそう」≠ 正しく動作' }
+        }
     ]
 };
 

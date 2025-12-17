@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import {
     promptTree,
     primaryNodes,
@@ -23,14 +24,24 @@ function TreeNode({ node, selectedId, onSelect }) {
 }
 
 function DetailPanel({ node }) {
+    const { t } = useLanguage();
+
     if (!node) {
         return (
             <div className="detail-panel">
                 <div className="detail-panel__empty">
                     <div className="detail-panel__empty-icon">👆</div>
-                    <p>Chọn một thành phần trên cây để xem chi tiết</p>
+                    <p>{t({
+                        vi: 'Chọn một thành phần trên cây để xem chi tiết',
+                        en: 'Select a component on the tree to view details',
+                        ja: 'ツリー上のコンポーネントを選択して詳細を表示'
+                    })}</p>
                     <p style={{ fontSize: '0.875rem', marginTop: '0.5rem', opacity: 0.7 }}>
-                        Nhấp vào bất kỳ node nào để tìm hiểu về vai trò của nó trong prompt
+                        {t({
+                            vi: 'Nhấp vào bất kỳ node nào để tìm hiểu về vai trò của nó trong prompt',
+                            en: 'Click on any node to learn about its role in the prompt',
+                            ja: 'ノードをクリックして、プロンプトにおける役割を学ぶ'
+                        })}
                     </p>
                 </div>
             </div>
@@ -38,6 +49,18 @@ function DetailPanel({ node }) {
     }
 
     const { details } = node;
+
+    const getValue = (obj) => {
+        if (!obj) return null;
+        if (typeof obj === 'string') return obj;
+        return t(obj);
+    };
+
+    const getArray = (obj) => {
+        if (!obj) return [];
+        if (Array.isArray(obj)) return obj;
+        return t(obj) || [];
+    };
 
     return (
         <div className="detail-panel">
@@ -48,25 +71,37 @@ function DetailPanel({ node }) {
             <div className="detail-panel__content">
                 {details.definition && (
                     <section className="detail-panel__section">
-                        <h3 className="detail-panel__section-title">📝 Định nghĩa</h3>
-                        <p className="detail-panel__text">{details.definition}</p>
+                        <h3 className="detail-panel__section-title">📝 {t({
+                            vi: 'Định nghĩa',
+                            en: 'Definition',
+                            ja: '定義'
+                        })}</h3>
+                        <p className="detail-panel__text">{getValue(details.definition)}</p>
                     </section>
                 )}
 
                 {details.question && (
                     <section className="detail-panel__section">
-                        <h3 className="detail-panel__section-title">❓ Câu hỏi cần trả lời</h3>
+                        <h3 className="detail-panel__section-title">❓ {t({
+                            vi: 'Câu hỏi cần trả lời',
+                            en: 'Question to answer',
+                            ja: '答えるべき質問'
+                        })}</h3>
                         <p className="detail-panel__text" style={{ fontStyle: 'italic', color: 'var(--color-primary-light)' }}>
-                            "{details.question}"
+                            "{getValue(details.question)}"
                         </p>
                     </section>
                 )}
 
-                {details.purpose && details.purpose.length > 0 && (
+                {details.purpose && (
                     <section className="detail-panel__section">
-                        <h3 className="detail-panel__section-title">🎯 Mục đích</h3>
+                        <h3 className="detail-panel__section-title">🎯 {t({
+                            vi: 'Mục đích',
+                            en: 'Purpose',
+                            ja: '目的'
+                        })}</h3>
                         <ul className="detail-panel__list">
-                            {details.purpose.map((item, idx) => (
+                            {getArray(details.purpose).map((item, idx) => (
                                 <li key={idx} className="detail-panel__list-item">{item}</li>
                             ))}
                         </ul>
@@ -75,17 +110,21 @@ function DetailPanel({ node }) {
 
                 {details.valueTable && (
                     <section className="detail-panel__section">
-                        <h3 className="detail-panel__section-title">⚖️ Giá trị đem lại</h3>
+                        <h3 className="detail-panel__section-title">⚖️ {t({
+                            vi: 'Giá trị đem lại',
+                            en: 'Value provided',
+                            ja: '提供される価値'
+                        })}</h3>
                         <table className="value-table">
                             <thead>
                                 <tr>
-                                    {details.valueTable.headers.map((header, idx) => (
+                                    {getArray(details.valueTable.headers).map((header, idx) => (
                                         <th key={idx}>{header}</th>
                                     ))}
                                 </tr>
                             </thead>
                             <tbody>
-                                {details.valueTable.rows.map((row, idx) => (
+                                {getArray(details.valueTable.rows).map((row, idx) => (
                                     <tr key={idx}>
                                         {row.map((cell, cellIdx) => (
                                             <td key={cellIdx}>{cell}</td>
@@ -99,11 +138,18 @@ function DetailPanel({ node }) {
 
                 {details.examples && details.examples.length > 0 && (
                     <section className="detail-panel__section">
-                        <h3 className="detail-panel__section-title">💡 Ví dụ</h3>
+                        <h3 className="detail-panel__section-title">💡 {t({
+                            vi: 'Ví dụ',
+                            en: 'Examples',
+                            ja: '例'
+                        })}</h3>
                         {details.examples.map((example, idx) => (
                             <div key={idx} className={`example example--${example.type}`}>
                                 <div className="example__header">
-                                    {example.type === 'bad' ? '❌ Không nên' : '✅ Nên làm'}
+                                    {example.type === 'bad'
+                                        ? t({ vi: '❌ Không nên', en: '❌ Don\'t', ja: '❌ 避けるべき' })
+                                        : t({ vi: '✅ Nên làm', en: '✅ Do', ja: '✅ すべき' })
+                                    }
                                 </div>
                                 <pre className="example__code">{example.content}</pre>
                             </div>
@@ -111,22 +157,26 @@ function DetailPanel({ node }) {
                     </section>
                 )}
 
-                {details.commonInfo && details.commonInfo.length > 0 && (
+                {details.commonInfo && (
                     <section className="detail-panel__section">
-                        <h3 className="detail-panel__section-title">📋 Thông tin thường có</h3>
+                        <h3 className="detail-panel__section-title">📋 {t({
+                            vi: 'Thông tin thường có',
+                            en: 'Common information',
+                            ja: '一般的な情報'
+                        })}</h3>
                         <ul className="detail-panel__list">
-                            {details.commonInfo.map((item, idx) => (
+                            {getArray(details.commonInfo).map((item, idx) => (
                                 <li key={idx} className="detail-panel__list-item">{item}</li>
                             ))}
                         </ul>
                     </section>
                 )}
 
-                {details.keyTakeaways && details.keyTakeaways.length > 0 && (
+                {details.keyTakeaways && (
                     <section className="detail-panel__section">
                         <h3 className="detail-panel__section-title">🔑 Key Takeaways</h3>
                         <ul className="detail-panel__list">
-                            {details.keyTakeaways.map((item, idx) => (
+                            {getArray(details.keyTakeaways).map((item, idx) => (
                                 <li key={idx} className="detail-panel__list-item">{item}</li>
                             ))}
                         </ul>
