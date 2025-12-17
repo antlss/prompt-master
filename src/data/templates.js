@@ -206,6 +206,154 @@ TASK:
 3. Recommend indexes
 4. Provide optimized query
 5. Explain improvements`
+        },
+        {
+            id: 'dev-7',
+            title: {
+                vi: 'Code Review',
+                en: 'Code Review',
+                ja: 'コードレビュー'
+            },
+            description: {
+                vi: 'Review code để tìm bugs, issues và cải thiện',
+                en: 'Review code to find bugs, issues and improvements',
+                ja: 'バグ、問題、改善点を見つけるコードレビュー'
+            },
+            popular: true,
+            template: `CONTEXT:
+Language: [language]
+Framework: [framework]
+Type: [PR review/Full codebase review/Specific module]
+Focus areas: [security/performance/readability/all]
+
+CODE TO REVIEW:
+\`\`\`[language]
+[Paste code here]
+\`\`\`
+
+TASK:
+Review this code and provide:
+1. Critical Issues (bugs, security vulnerabilities)
+2. Code Quality Issues (naming, structure, complexity)
+3. Performance Concerns
+4. Best Practice Violations
+5. Suggestions for Improvement
+
+OUTPUT FORMAT:
+- Severity: 🔴 Critical / 🟡 Warning / 🔵 Info
+- Location: file/line reference
+- Issue: description
+- Suggestion: how to fix`
+        },
+        {
+            id: 'dev-8',
+            title: {
+                vi: 'Security Audit',
+                en: 'Security Audit',
+                ja: 'セキュリティ監査'
+            },
+            description: {
+                vi: 'Phân tích bảo mật và tìm lỗ hổng',
+                en: 'Security analysis and vulnerability detection',
+                ja: 'セキュリティ分析と脆弱性検出'
+            },
+            template: `CONTEXT:
+Application type: [web/mobile/API/backend]
+Language/Framework: [language/framework]
+Authentication: [method used]
+Data sensitivity: [PII/financial/healthcare/general]
+
+CODE/CONFIG TO AUDIT:
+\`\`\`[language]
+[Paste code or config here]
+\`\`\`
+
+TASK:
+Perform security audit checking for:
+1. OWASP Top 10 vulnerabilities
+2. Authentication/Authorization issues
+3. Input validation problems
+4. Sensitive data exposure
+5. Security misconfigurations
+
+OUTPUT FORMAT:
+| Vulnerability | Severity | Location | Description | Remediation |
+Include CVSS score estimation if applicable.`
+        },
+        {
+            id: 'dev-9',
+            title: {
+                vi: 'Documentation Generation',
+                en: 'Documentation Generation',
+                ja: 'ドキュメント生成'
+            },
+            description: {
+                vi: 'Tạo documentation từ code',
+                en: 'Generate documentation from code',
+                ja: 'コードからドキュメントを生成'
+            },
+            template: `CONTEXT:
+Language: [language]
+Documentation type: [API docs/README/JSDoc/inline comments]
+Audience: [developers/end-users/both]
+
+CODE:
+\`\`\`[language]
+[Paste code here]
+\`\`\`
+
+TASK:
+Generate documentation including:
+1. Overview/Purpose
+2. Installation/Setup (if applicable)
+3. Usage examples
+4. API reference (functions, parameters, return values)
+5. Error handling
+
+REQUIREMENTS:
+- Clear and concise language
+- Include code examples
+- Follow [JSDoc/Sphinx/Swagger] format
+- Suitable for [audience level]`
+        },
+        {
+            id: 'dev-10',
+            title: {
+                vi: 'Git Commit Message',
+                en: 'Git Commit Message',
+                ja: 'Gitコミットメッセージ'
+            },
+            description: {
+                vi: 'Viết commit message theo chuẩn Conventional Commits',
+                en: 'Write commit messages following Conventional Commits',
+                ja: 'Conventional Commitsに従ったコミットメッセージ'
+            },
+            template: `CONTEXT:
+Changes made: [describe what was changed]
+Files affected: [list main files]
+Related issue: [issue/ticket number if any]
+
+DIFF/CHANGES:
+\`\`\`diff
+[Paste git diff or describe changes]
+\`\`\`
+
+TASK:
+Generate a commit message following Conventional Commits format:
+- type: feat/fix/docs/style/refactor/test/chore
+- scope: component/module affected
+- description: imperative mood, lowercase
+
+OUTPUT FORMAT:
+\`\`\`
+<type>(<scope>): <description>
+
+[optional body - what and why]
+
+[optional footer - breaking changes, issue refs]
+\`\`\`
+
+Provide 2-3 options if the changes are complex.`
         }
     ],
     ba: [
@@ -431,6 +579,88 @@ OUTPUT:
 - Prioritization table
 - Reasoning for top 5
 - Recommendations`
+        },
+        {
+            id: 'pm-4',
+            title: {
+                vi: 'Release Notes',
+                en: 'Release Notes',
+                ja: 'リリースノート'
+            },
+            description: {
+                vi: 'Viết release notes chuyên nghiệp',
+                en: 'Write professional release notes',
+                ja: 'プロフェッショナルなリリースノート'
+            },
+            template: `CONTEXT:
+Product: [product name]
+Version: [version number]
+Release date: [date]
+Audience: [internal/external/both]
+
+CHANGES IN THIS RELEASE:
+Features:
+- [Feature 1]
+- [Feature 2]
+
+Bug Fixes:
+- [Fix 1]
+- [Fix 2]
+
+Improvements:
+- [Improvement 1]
+
+TASK:
+Write release notes including:
+1. Version header with date
+2. Highlights summary (2-3 sentences)
+3. New Features (with brief descriptions)
+4. Improvements
+5. Bug Fixes
+6. Known Issues (if any)
+7. Breaking Changes (if any)
+8. Upgrade instructions (if needed)
+
+OUTPUT FORMAT:
+Professional release notes suitable for [audience].
+Tone: [technical/user-friendly/marketing]`
+        },
+        {
+            id: 'pm-5',
+            title: {
+                vi: 'User Feedback Analysis',
+                en: 'User Feedback Analysis',
+                ja: 'ユーザーフィードバック分析'
+            },
+            description: {
+                vi: 'Phân tích và tổng hợp feedback người dùng',
+                en: 'Analyze and synthesize user feedback',
+                ja: 'ユーザーフィードバックを分析・統合'
+            },
+            popular: true,
+            template: `CONTEXT:
+Product: [product name]
+Feedback source: [app reviews/surveys/support tickets/interviews]
+Time period: [date range]
+Sample size: [number of feedback items]
+
+FEEDBACK DATA:
+[Paste feedback samples or summary]
+
+TASK:
+Analyze this feedback and provide:
+1. Executive Summary (key insights)
+2. Sentiment breakdown (positive/negative/neutral %)
+3. Top themes/categories (with frequency)
+4. Critical issues requiring immediate attention
+5. Feature requests ranked by demand
+6. Actionable recommendations
+
+OUTPUT FORMAT:
+- Summary table
+- Detailed analysis by category
+- Priority matrix (Impact vs Frequency)
+- Recommended next steps`
         }
     ],
     qa: [
@@ -544,6 +774,87 @@ Generate API test cases covering:
 
 FORMAT:
 | ID | Scenario | Request | Expected Response | Priority |`
+        },
+        {
+            id: 'qa-4',
+            title: {
+                vi: 'Bug Report',
+                en: 'Bug Report',
+                ja: 'バグレポート'
+            },
+            description: {
+                vi: 'Viết bug report chi tiết và chuẩn',
+                en: 'Write detailed and standardized bug reports',
+                ja: '詳細で標準化されたバグレポート'
+            },
+            popular: true,
+            template: `CONTEXT:
+Application: [application name]
+Environment: [dev/staging/production]
+Version: [app version]
+Browser/Device: [if applicable]
+
+BUG DESCRIPTION:
+[Describe what happened]
+
+STEPS TO REPRODUCE:
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+EXPECTED RESULT:
+[What should happen]
+
+ACTUAL RESULT:
+[What actually happened]
+
+TASK:
+Help me create a comprehensive bug report including:
+1. Clear, descriptive title
+2. Severity assessment (Critical/High/Medium/Low)
+3. Priority recommendation
+4. Root cause hypothesis
+5. Suggested fix (if obvious)
+6. Related test cases to add
+
+OUTPUT FORMAT:
+Standard bug report template with all fields filled.`
+        },
+        {
+            id: 'qa-5',
+            title: {
+                vi: 'Test Plan',
+                en: 'Test Plan',
+                ja: 'テスト計画'
+            },
+            description: {
+                vi: 'Viết test plan chuyên nghiệp',
+                en: 'Write professional test plans',
+                ja: 'プロフェッショナルなテスト計画'
+            },
+            template: `CONTEXT:
+Project/Feature: [name]
+Release date: [date]
+Testing scope: [full regression/feature testing/smoke]
+Team size: [number of testers]
+Available time: [days/hours]
+
+REQUIREMENTS:
+[Paste or summarize requirements]
+
+TASK:
+Create a test plan including:
+1. Test Objectives
+2. Scope (In-scope / Out-of-scope)
+3. Test Strategy (types of testing)
+4. Test Environment requirements
+5. Entry/Exit Criteria
+6. Test Deliverables
+7. Resource & Schedule
+8. Risk Assessment & Mitigation
+
+OUTPUT FORMAT:
+Professional test plan document structure.`
         }
     ],
     techlead: [
@@ -729,6 +1040,65 @@ Output: [example output 2]
 NOW:
 Input: [your actual input]
 Output:`
+    },
+    {
+        title: 'Chain of Thought',
+        description: {
+            vi: 'Cho các vấn đề cần suy luận logic',
+            en: 'For problems requiring logical reasoning',
+            ja: '論理的推論が必要な問題向け'
+        },
+        example: `CONTEXT:
+[Describe the problem or situation]
+
+TASK:
+[What needs to be solved/decided]
+
+APPROACH:
+Think through this problem step by step:
+1. First, identify the key factors
+2. Then, analyze each factor
+3. Consider pros and cons
+4. Draw conclusions based on analysis
+
+REQUIREMENTS:
+- Show your reasoning process
+- Explain each step of your thinking
+- Arrive at a clear conclusion/recommendation
+
+OUTPUT:
+Provide your analysis with clear reasoning chain.`
+    },
+    {
+        title: 'Iterative Refinement',
+        description: {
+            vi: 'Cải thiện output qua nhiều vòng lặp',
+            en: 'Improve output through multiple iterations',
+            ja: '複数のイテレーションで出力を改善'
+        },
+        example: `CONTEXT:
+[Background information]
+
+INITIAL OUTPUT:
+[Paste previous AI response or draft]
+
+FEEDBACK:
+What to improve:
+- [Specific issue 1]
+- [Specific issue 2]
+
+What to keep:
+- [Good aspect 1]
+- [Good aspect 2]
+
+TASK:
+Refine the output based on my feedback.
+Keep the good parts, fix the issues mentioned.
+
+CONSTRAINTS:
+- Maintain overall structure
+- Only modify what's mentioned in feedback
+- Explain what you changed and why`
     }
 ];
 
