@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Layers, FileText, Globe, ChevronDown } from 'lucide-react';
+import { Layers, FileText, Globe, ChevronDown, Wand2 } from 'lucide-react';
 import { LanguageProvider, useLanguage, languages } from './contexts/LanguageContext';
 import PromptBody from './components/PromptBody';
 import Templates from './components/Templates';
+import PromptBuilder from './components/PromptBuilder';
 
 function LanguageSwitcher() {
     const { currentLang, setCurrentLang } = useLanguage();
@@ -77,6 +78,13 @@ function AppContent() {
                         <FileText size={18} />
                         <span>Templates</span>
                     </button>
+                    <button
+                        className={`header__nav-btn ${activeSection === 'builder' ? 'header__nav-btn--active' : ''}`}
+                        onClick={() => setActiveSection('builder')}
+                    >
+                        <Wand2 size={18} />
+                        <span>Builder</span>
+                    </button>
                 </nav>
 
                 <LanguageSwitcher />
@@ -85,6 +93,7 @@ function AppContent() {
             <main className="main">
                 {activeSection === 'prompt-body' && <PromptBody />}
                 {activeSection === 'templates' && <Templates />}
+                {activeSection === 'builder' && <PromptBuilder />}
             </main>
         </div>
     );
