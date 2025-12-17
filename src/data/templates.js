@@ -963,6 +963,711 @@ Help structure post-mortem:
 
 TONE: Blameless, focused on learning`
         }
+    ],
+    tasks: [
+        {
+            id: 'task-1',
+            title: {
+                vi: 'Research & Discovery',
+                en: 'Research & Discovery',
+                ja: 'リサーチ＆発見'
+            },
+            description: {
+                vi: 'Nghiên cứu công nghệ, tools hoặc solutions mới',
+                en: 'Research new technologies, tools or solutions',
+                ja: '新しい技術、ツール、ソリューションをリサーチ'
+            },
+            popular: true,
+            template: `CONTEXT:
+I need to research [topic/technology/tool] for [project/purpose].
+Current knowledge level: [beginner/intermediate/advanced]
+Time available: [hours/days]
+
+RESEARCH GOALS:
+- [Goal 1: e.g., Understand core concepts]
+- [Goal 2: e.g., Compare with alternatives]
+- [Goal 3: e.g., Evaluate for our use case]
+
+CONSTRAINTS:
+- Must work with: [existing stack/requirements]
+- Budget: [if applicable]
+- Timeline: [deadline]
+
+TASK:
+1. Provide overview of [topic]
+2. List key features/capabilities
+3. Compare with alternatives (pros/cons table)
+4. Evaluate fit for my use case
+5. Recommend learning resources
+6. Suggest next steps
+
+OUTPUT FORMAT:
+- Executive summary (2-3 sentences)
+- Detailed findings by section
+- Comparison table
+- Recommendations with reasoning`
+        },
+        {
+            id: 'task-2',
+            title: {
+                vi: 'Deep Analysis',
+                en: 'Deep Analysis',
+                ja: '深層分析'
+            },
+            description: {
+                vi: 'Phân tích sâu vấn đề, code hoặc hệ thống',
+                en: 'Deep analysis of problems, code or systems',
+                ja: '問題、コード、システムの深層分析'
+            },
+            popular: true,
+            template: `CONTEXT:
+Subject to analyze: [code/system/problem/data]
+Purpose: [understand/optimize/debug/improve]
+Scope: [specific area or full system]
+
+SUBJECT:
+\`\`\`
+[Paste code, data, or describe system]
+\`\`\`
+
+ANALYSIS REQUIREMENTS:
+- Depth level: [surface/detailed/exhaustive]
+- Focus areas: [performance/security/maintainability/logic]
+
+TASK:
+Perform comprehensive analysis:
+1. High-level overview
+2. Component breakdown
+3. Identify patterns and anti-patterns
+4. Find potential issues/risks
+5. Assess quality (1-10 with criteria)
+6. Provide actionable insights
+
+OUTPUT FORMAT:
+- Summary findings
+- Detailed analysis by component
+- Issues table (Issue | Severity | Location | Recommendation)
+- Quality scorecard
+- Priority recommendations`
+        },
+        {
+            id: 'task-3',
+            title: {
+                vi: 'System Design',
+                en: 'System Design',
+                ja: 'システム設計'
+            },
+            description: {
+                vi: 'Thiết kế kiến trúc hệ thống hoặc features',
+                en: 'Design system architecture or features',
+                ja: 'システムアーキテクチャまたは機能を設計'
+            },
+            popular: true,
+            template: `CONTEXT:
+Project: [project name]
+Type: [new system/new feature/refactor existing]
+Scale: [users/requests per second/data volume]
+
+REQUIREMENTS:
+Functional:
+- [Requirement 1]
+- [Requirement 2]
+
+Non-functional:
+- Performance: [latency/throughput targets]
+- Availability: [uptime requirement]
+- Scalability: [growth expectations]
+
+CONSTRAINTS:
+- Tech stack: [required technologies]
+- Budget: [infrastructure budget]
+- Team: [team size and skills]
+- Timeline: [deadline]
+
+TASK:
+Design system architecture including:
+1. High-level architecture diagram (describe in text/mermaid)
+2. Component breakdown with responsibilities
+3. Data flow and storage design
+4. API contracts (key endpoints)
+5. Technology choices with justification
+6. Scalability strategy
+7. Failure handling and recovery
+8. Security considerations
+
+OUTPUT FORMAT:
+- Architecture overview
+- Component diagrams (Mermaid syntax)
+- Decision rationale for key choices
+- Trade-offs acknowledged`
+        },
+        {
+            id: 'task-4',
+            title: {
+                vi: 'Debug & Troubleshoot',
+                en: 'Debug & Troubleshoot',
+                ja: 'デバッグ＆トラブルシューティング'
+            },
+            description: {
+                vi: 'Debug issues khó và troubleshoot hệ thống',
+                en: 'Debug difficult issues and troubleshoot systems',
+                ja: '難しい問題をデバッグ、システムをトラブルシューティング'
+            },
+            template: `CONTEXT:
+System/Application: [name]
+Environment: [dev/staging/production]
+Issue started: [when]
+Frequency: [always/intermittent/rare]
+
+SYMPTOMS:
+- [Symptom 1]
+- [Symptom 2]
+
+ERROR LOGS:
+\`\`\`
+[Paste relevant logs/errors]
+\`\`\`
+
+WHAT I'VE CHECKED:
+- [Check 1]: [result]
+- [Check 2]: [result]
+
+RECENT CHANGES:
+- [Change 1]
+- [Change 2]
+
+TASK:
+Help me troubleshoot this issue:
+1. Analyze symptoms and logs
+2. Hypothesize root causes (ranked by likelihood)
+3. Suggest diagnostic steps to confirm
+4. Provide potential fixes for each hypothesis
+5. Recommend prevention measures
+
+OUTPUT FORMAT:
+- Initial assessment
+- Hypothesis table (Cause | Likelihood | How to verify)
+- Step-by-step debugging guide
+- Fix recommendations`
+        },
+        {
+            id: 'task-5',
+            title: {
+                vi: 'Fix Bug',
+                en: 'Fix Bug',
+                ja: 'バグ修正'
+            },
+            description: {
+                vi: 'Tìm và fix bug với hướng dẫn chi tiết',
+                en: 'Find and fix bugs with detailed guidance',
+                ja: '詳細なガイダンスでバグを見つけて修正'
+            },
+            template: `CONTEXT:
+Language: [language]
+Framework: [framework]
+Component: [module/file/function]
+
+BUG DESCRIPTION:
+- Expected behavior: [what should happen]
+- Actual behavior: [what happens instead]
+- Steps to reproduce:
+  1. [Step 1]
+  2. [Step 2]
+
+CODE:
+\`\`\`[language]
+[Paste relevant code]
+\`\`\`
+
+ERROR (if any):
+\`\`\`
+[Error message/stack trace]
+\`\`\`
+
+TASK:
+1. Identify the bug location
+2. Explain root cause
+3. Provide fix with code
+4. Explain why the fix works
+5. Suggest test cases to verify
+6. Recommend ways to prevent similar bugs
+
+REQUIREMENTS:
+- Minimal changes (don't refactor unnecessarily)
+- Maintain backward compatibility
+- Add comments explaining the fix`
+        },
+        {
+            id: 'task-6',
+            title: {
+                vi: 'Code Refactoring',
+                en: 'Code Refactoring',
+                ja: 'コードリファクタリング'
+            },
+            description: {
+                vi: 'Refactor code để improve quality',
+                en: 'Refactor code to improve quality',
+                ja: '品質向上のためにコードをリファクタリング'
+            },
+            popular: true,
+            template: `CONTEXT:
+Language: [language]
+Framework: [framework]
+Codebase age: [new/mature/legacy]
+Test coverage: [none/partial/good]
+
+CODE TO REFACTOR:
+\`\`\`[language]
+[Paste code]
+\`\`\`
+
+REFACTORING GOALS:
+- [x] Improve readability
+- [x] Reduce complexity
+- [ ] Improve performance
+- [ ] Apply design patterns
+- [ ] Other: [specify]
+
+CONSTRAINTS:
+- Don't change: [public API/behavior/etc]
+- Must maintain: [backward compatibility/tests passing]
+- Time budget: [quick fix/thorough refactor]
+
+TASK:
+1. Identify code smells and issues
+2. Propose refactoring strategy
+3. Provide refactored code
+4. Explain each change and why
+5. Highlight any breaking changes
+6. Suggest tests to verify
+
+OUTPUT FORMAT:
+- Issues identified (with line references)
+- Refactored code
+- Change log (what changed and why)
+- Before/after comparison`
+        },
+        {
+            id: 'task-7',
+            title: {
+                vi: 'Code Review',
+                en: 'Code Review',
+                ja: 'コードレビュー'
+            },
+            description: {
+                vi: 'Review code chuyên sâu với feedback chi tiết',
+                en: 'In-depth code review with detailed feedback',
+                ja: '詳細なフィードバック付き深層コードレビュー'
+            },
+            popular: true,
+            template: `CONTEXT:
+Language: [language]
+Framework: [framework]
+PR/Change type: [feature/bugfix/refactor]
+Author level: [junior/mid/senior]
+
+CODE TO REVIEW:
+\`\`\`[language]
+[Paste code]
+\`\`\`
+
+REVIEW FOCUS:
+- [ ] Correctness (bugs, logic errors)
+- [ ] Security (vulnerabilities, data handling)
+- [ ] Performance (efficiency, scalability)
+- [ ] Maintainability (readability, structure)
+- [ ] Best practices (patterns, conventions)
+- [ ] Tests (coverage, quality)
+
+TASK:
+Perform thorough code review:
+1. Summary assessment (approve/needs changes)
+2. Critical issues (must fix)
+3. Suggestions (nice to have)
+4. Good practices observed
+5. Questions for the author
+
+OUTPUT FORMAT:
+For each issue:
+- 🔴 CRITICAL / 🟡 SUGGESTION / 🟢 PRAISE
+- Location: [file:line]
+- Issue: [description]
+- Suggestion: [how to improve]
+- Code example (if applicable)`
+        },
+        {
+            id: 'task-8',
+            title: {
+                vi: 'Performance Optimization',
+                en: 'Performance Optimization',
+                ja: 'パフォーマンス最適化'
+            },
+            description: {
+                vi: 'Tối ưu hóa performance cho code hoặc queries',
+                en: 'Optimize performance for code or queries',
+                ja: 'コードまたはクエリのパフォーマンスを最適化'
+            },
+            template: `CONTEXT:
+Type: [code/query/API/page load]
+Language/Database: [language/database]
+Current performance: [current metrics]
+Target performance: [target metrics]
+
+CODE/QUERY TO OPTIMIZE:
+\`\`\`[language]
+[Paste code or query]
+\`\`\`
+
+PROFILING DATA (if available):
+- Slowest operations: [list]
+- Memory usage: [amount]
+- Call frequency: [times/second]
+
+CONSTRAINTS:
+- Can't change: [external APIs/database schema/etc]
+- Must maintain: [accuracy/behavior]
+
+TASK:
+1. Analyze performance bottlenecks
+2. Identify optimization opportunities
+3. Provide optimized version
+4. Estimate improvement (%)
+5. List trade-offs of optimizations
+6. Suggest monitoring approach
+
+OUTPUT FORMAT:
+- Analysis summary
+- Bottleneck identification
+- Optimized code with comments
+- Expected improvements
+- Trade-offs table`
+        },
+        {
+            id: 'task-9',
+            title: {
+                vi: 'Migration Planning',
+                en: 'Migration Planning',
+                ja: '移行計画'
+            },
+            description: {
+                vi: 'Lên kế hoạch migration cho hệ thống hoặc data',
+                en: 'Plan migration for systems or data',
+                ja: 'システムまたはデータの移行を計画'
+            },
+            template: `CONTEXT:
+Migration type: [database/framework/cloud/API version]
+From: [current state]
+To: [target state]
+Timeline: [deadline]
+Downtime tolerance: [zero/minimal/acceptable window]
+
+CURRENT STATE:
+- Technology: [current tech]
+- Data volume: [size]
+- Dependencies: [list]
+- Users/Traffic: [numbers]
+
+TARGET STATE:
+- Technology: [target tech]
+- New features: [if any]
+- Requirements: [list]
+
+TASK:
+Create migration plan including:
+1. Risk assessment
+2. Pre-migration checklist
+3. Step-by-step migration process
+4. Rollback strategy
+5. Data validation approach
+6. Testing strategy
+7. Communication plan
+8. Post-migration verification
+
+OUTPUT FORMAT:
+- Executive summary
+- Risk matrix
+- Detailed timeline
+- Runbook with specific commands
+- Rollback procedures`
+        },
+        {
+            id: 'task-10',
+            title: {
+                vi: 'Write Documentation',
+                en: 'Write Documentation',
+                ja: 'ドキュメント作成'
+            },
+            description: {
+                vi: 'Viết documentation chất lượng cao',
+                en: 'Write high-quality documentation',
+                ja: '高品質なドキュメントを作成'
+            },
+            template: `CONTEXT:
+Doc type: [README/API docs/User guide/Architecture doc]
+Audience: [developers/end-users/stakeholders]
+Technical level: [beginner/intermediate/advanced]
+
+SUBJECT:
+[Describe what to document or paste code]
+
+EXISTING DOCS (if any):
+[Link or paste existing content]
+
+REQUIREMENTS:
+- Length: [brief/comprehensive]
+- Include: [examples/diagrams/API reference]
+- Tone: [formal/casual/technical]
+
+TASK:
+Write documentation including:
+1. Clear introduction/overview
+2. Prerequisites (if applicable)
+3. Installation/Setup guide
+4. Usage examples (with code)
+5. Configuration options
+6. Troubleshooting section
+7. FAQ (common questions)
+
+OUTPUT FORMAT:
+- Markdown format
+- Code blocks with syntax highlighting
+- Proper headings hierarchy
+- Links to related resources`
+        },
+        {
+            id: 'task-11',
+            title: {
+                vi: 'Test Strategy',
+                en: 'Test Strategy',
+                ja: 'テスト戦略'
+            },
+            description: {
+                vi: 'Xây dựng chiến lược testing toàn diện',
+                en: 'Build comprehensive testing strategy',
+                ja: '包括的なテスト戦略を構築'
+            },
+            template: `CONTEXT:
+Project/Feature: [name]
+Type: [new feature/refactor/bug fix]
+Criticality: [low/medium/high/critical]
+Deadline: [date]
+
+FEATURE DESCRIPTION:
+[Describe the feature or change]
+
+ACCEPTANCE CRITERIA:
+- [AC 1]
+- [AC 2]
+
+EXISTING TESTS:
+- Unit tests: [none/some/good coverage]
+- Integration tests: [status]
+- E2E tests: [status]
+
+TASK:
+Create test strategy including:
+1. Test scope and objectives
+2. Test types needed (unit/integration/E2E/performance)
+3. Test cases for each type
+4. Edge cases and boundary conditions
+5. Test data requirements
+6. Mocking/stubbing strategy
+7. CI/CD integration
+8. Coverage targets
+
+OUTPUT FORMAT:
+- Strategy overview
+- Test case table by type
+- Priority matrix
+- Implementation timeline`
+        },
+        {
+            id: 'task-12',
+            title: {
+                vi: 'Project Planning',
+                en: 'Project Planning',
+                ja: 'プロジェクト計画'
+            },
+            description: {
+                vi: 'Lập kế hoạch cho dự án hoặc feature',
+                en: 'Plan projects or features',
+                ja: 'プロジェクトまたは機能を計画'
+            },
+            template: `CONTEXT:
+Project/Feature: [name]
+Type: [new project/new feature/improvement]
+Team size: [number of people]
+Duration: [estimated timeframe]
+
+GOALS:
+- Primary goal: [main objective]
+- Success metrics: [how to measure success]
+
+REQUIREMENTS:
+[List main requirements]
+
+CONSTRAINTS:
+- Budget: [if applicable]
+- Timeline: [hard deadline?]
+- Resources: [limitations]
+- Dependencies: [external dependencies]
+
+TASK:
+Create project plan including:
+1. Scope definition (in/out of scope)
+2. Work breakdown structure (WBS)
+3. Task dependencies
+4. Timeline with milestones
+5. Resource allocation
+6. Risk assessment and mitigation
+7. Communication plan
+8. Success criteria
+
+OUTPUT FORMAT:
+- Executive summary
+- WBS table with estimates
+- Gantt chart (text representation)
+- Risk matrix
+- RACI matrix (if team involved)`
+        },
+        {
+            id: 'task-13',
+            title: {
+                vi: 'Root Cause Analysis',
+                en: 'Root Cause Analysis',
+                ja: '根本原因分析'
+            },
+            description: {
+                vi: 'Phân tích nguyên nhân gốc rễ của vấn đề',
+                en: 'Analyze root cause of problems',
+                ja: '問題の根本原因を分析'
+            },
+            template: `CONTEXT:
+Problem: [describe the issue]
+Impact: [who/what is affected]
+First occurred: [when]
+Frequency: [one-time/recurring]
+Severity: [low/medium/high/critical]
+
+SYMPTOMS:
+- [Symptom 1]
+- [Symptom 2]
+- [Symptom 3]
+
+TIMELINE OF EVENTS:
+- [Time]: [Event]
+- [Time]: [Event]
+
+DATA/LOGS:
+\`\`\`
+[Relevant data or logs]
+\`\`\`
+
+TASK:
+Perform root cause analysis:
+1. Problem statement (clear, specific)
+2. Impact assessment
+3. 5 Whys analysis
+4. Fishbone diagram (describe categories)
+5. Contributing factors
+6. Root cause identification
+7. Corrective actions (short-term)
+8. Preventive actions (long-term)
+
+OUTPUT FORMAT:
+- Problem summary
+- 5 Whys chain
+- Root cause statement
+- Action items with owners and deadlines`
+        },
+        {
+            id: 'task-14',
+            title: {
+                vi: 'Learning & Explanation',
+                en: 'Learning & Explanation',
+                ja: '学習＆説明'
+            },
+            description: {
+                vi: 'Học concept mới với giải thích chi tiết',
+                en: 'Learn new concepts with detailed explanations',
+                ja: '詳細な説明で新しい概念を学習'
+            },
+            popular: true,
+            template: `CONTEXT:
+Topic: [concept/technology/pattern to learn]
+Current level: [beginner/intermediate/advanced]
+Background: [relevant experience]
+Learning goal: [what I want to achieve]
+
+SPECIFIC QUESTIONS:
+1. [Question 1]
+2. [Question 2]
+
+TIME AVAILABLE:
+[How much time to dedicate]
+
+TASK:
+Explain this topic including:
+1. What it is (simple definition)
+2. Why it matters (real-world importance)
+3. How it works (mechanism/process)
+4. When to use it (use cases)
+5. When NOT to use it (anti-patterns)
+6. Practical example (with code if applicable)
+7. Common mistakes to avoid
+8. Next steps for deeper learning
+
+OUTPUT FORMAT:
+- ELI5 explanation first
+- Then detailed technical explanation
+- Code examples with comments
+- Resources for further learning`
+        },
+        {
+            id: 'task-15',
+            title: {
+                vi: 'Brainstorming & Ideas',
+                en: 'Brainstorming & Ideas',
+                ja: 'ブレインストーミング＆アイデア'
+            },
+            description: {
+                vi: 'Generate ideas và solutions sáng tạo',
+                en: 'Generate creative ideas and solutions',
+                ja: '創造的なアイデアとソリューションを生成'
+            },
+            template: `CONTEXT:
+Challenge: [problem or opportunity]
+Domain: [industry/area]
+Constraints: [limitations to consider]
+Goal: [what we want to achieve]
+
+BACKGROUND:
+[Relevant context and information]
+
+CURRENT APPROACHES:
+- [Existing solution 1]
+- [Existing solution 2]
+
+WHAT WE'VE TRIED:
+- [Attempt 1]: [result]
+- [Attempt 2]: [result]
+
+TASK:
+Help brainstorm solutions:
+1. Generate 10+ diverse ideas
+2. Include both conventional and unconventional approaches
+3. Consider different perspectives (user, business, technical)
+4. Identify quick wins vs long-term solutions
+5. Evaluate feasibility of top ideas
+6. Suggest combinations or hybrids
+7. Recommend next steps for top 3
+
+OUTPUT FORMAT:
+- Ideas list (numbered, brief description each)
+- Categorized by type (quick win/medium/moonshot)
+- Evaluation matrix for top ideas
+- Recommended action plan`
+        }
     ]
 };
 
@@ -1150,5 +1855,6 @@ export const roles = [
     { id: 'ba', name: 'BA', icon: 'FileText', color: 'blue' },
     { id: 'pmpo', name: 'PM/PO', icon: 'Briefcase', color: 'purple' },
     { id: 'qa', name: 'QA', icon: 'TestTube', color: 'orange' },
-    { id: 'techlead', name: 'Tech Lead', icon: 'Settings', color: 'pink' }
+    { id: 'techlead', name: 'Tech Lead', icon: 'Settings', color: 'pink' },
+    { id: 'tasks', name: 'Tasks', icon: 'Zap', color: 'amber' }
 ];

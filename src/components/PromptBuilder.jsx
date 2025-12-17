@@ -12,7 +12,8 @@ import {
     Settings,
     Sparkles,
     Eye,
-    Edit3
+    Edit3,
+    Zap
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { templates, roles } from '../data/templates';
@@ -22,7 +23,8 @@ const iconMap = {
     FileText,
     Briefcase,
     TestTube,
-    Settings
+    Settings,
+    Zap
 };
 
 function extractPlaceholders(template) {

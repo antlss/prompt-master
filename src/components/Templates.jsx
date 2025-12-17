@@ -10,7 +10,8 @@ import {
     TestTube,
     Settings,
     Star,
-    Lightbulb
+    Lightbulb,
+    Zap
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { templates, bestPractices, dosAndDonts, roles } from '../data/templates';
@@ -20,7 +21,8 @@ const iconMap = {
     FileText,
     Briefcase,
     TestTube,
-    Settings
+    Settings,
+    Zap
 };
 
 function CopyButton({ text }) {
