@@ -1,9 +1,65 @@
 import { useState } from 'react';
-import { Layers, FileText, Globe, ChevronDown, Wand2 } from 'lucide-react';
+import { Layers, FileText, Globe, ChevronDown, Wand2, Palette, Sun, Moon } from 'lucide-react';
 import { LanguageProvider, useLanguage, languages } from './contexts/LanguageContext';
+import { ThemeProvider, useTheme, themes } from './contexts/ThemeContext';
 import PromptBody from './components/PromptBody';
 import Templates from './components/Templates';
 import PromptBuilder from './components/PromptBuilder';
+
+function ThemeSwitcher() {
+    const { currentTheme, theme, setTheme, toggleMode } = useTheme();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const brandGroups = {
+        'Google': ['google-dark', 'google-light'],
+        'Apple': ['apple-dark', 'apple-light'],
+        'Claude': ['claude-dark', 'claude-light']
+    };
+
+    return (
+        <div className="theme-switcher">
+            <button
+                className="theme-switcher__btn"
+                onClick={() => setIsOpen(!isOpen)}
+                title="Change theme"
+            >
+                <Palette size={18} />
+                <span className="theme-switcher__current">
+                    {theme?.mode === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
+                </span>
+                <ChevronDown size={16} className={isOpen ? 'rotate' : ''} />
+            </button>
+
+            {isOpen && (
+                <div className="theme-switcher__dropdown">
+                    {Object.entries(brandGroups).map(([brand, themeIds]) => (
+                        <div key={brand} className="theme-switcher__group">
+                            <div className="theme-switcher__group-title">{brand}</div>
+                            {themeIds.map(themeId => {
+                                const t = themes[themeId];
+                                return (
+                                    <button
+                                        key={themeId}
+                                        className={`theme-switcher__option ${currentTheme === themeId ? 'active' : ''}`}
+                                        onClick={() => {
+                                            setTheme(themeId);
+                                            setIsOpen(false);
+                                        }}
+                                    >
+                                        <span className="theme-switcher__option-icon">
+                                            {t.mode === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
+                                        </span>
+                                        <span>{t.name}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
 
 function LanguageSwitcher() {
     const { currentLang, setCurrentLang } = useLanguage();
@@ -87,7 +143,10 @@ function AppContent() {
                     </button>
                 </nav>
 
-                <LanguageSwitcher />
+                <div className="header__actions">
+                    <ThemeSwitcher />
+                    <LanguageSwitcher />
+                </div>
             </header>
 
             <main className="main">
@@ -101,9 +160,11 @@ function AppContent() {
 
 function App() {
     return (
-        <LanguageProvider>
-            <AppContent />
-        </LanguageProvider>
+        <ThemeProvider>
+            <LanguageProvider>
+                <AppContent />
+            </LanguageProvider>
+        </ThemeProvider>
     );
 }
 
